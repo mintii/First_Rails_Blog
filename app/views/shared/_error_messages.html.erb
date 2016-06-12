@@ -1,0 +1,14 @@
+<% if @post.errors.any? %>
+  <div>
+    <p> <%= pluralize(@post.errors.count, "error") %> prevented this post from saving. </p>
+    <!-- The pluralize method takes an integer argument (@post.errors.count) and then returns the number with a properly pluralized version of its second argument (“error”): 1 error, 2 errors, 436 errors… -->
+
+    <ul>
+
+      <% @post.errors.full_messages.each do |message| %>
+        <li> <%= message %> </li>
+      <% end %>
+
+    </ul>
+  </div>
+<% end %>
