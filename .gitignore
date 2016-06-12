@@ -15,3 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+heroku_brittney_password
+heroku_brittney_password.pub
