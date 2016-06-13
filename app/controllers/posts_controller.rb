@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :find_post, only: [:show, :edit, :update, :destroy]
+  # before_action :find_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate, only: [:admin, :new, :create, :edit, :update, :destroy ]
 
   def index
@@ -64,8 +64,8 @@ private
     params.require(:post).permit(:title, :content, :category_id)
   end
 
-  def find_post
-    @post = Post,find(parms[:id])
-  end
+  # def find_post
+  #   @post = Post.find(params[:id])
+  # end
 
 end
