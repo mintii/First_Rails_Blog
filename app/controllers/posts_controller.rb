@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :find_post, only: [:show, :edit, :update, :destroy]
+  # before_action :find_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate, only: [:admin, :new, :create, :edit, :update, :destroy ]
 
   def index
     if params[:category].blank?
@@ -46,14 +47,25 @@ class PostsController < ApplicationController
     redirect_to root_path, notice: "Post destroyed"
   end
 
+  def admin
+    redirect_to root_path if authenticate
+  end
+
+protected
+  def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      username == "test" && password == "test"
+    end
+  end
+
 private
 
   def post_params
     params.require(:post).permit(:title, :content, :category_id)
   end
 
-  def find_post
-    @post = Post,find(parms[:id])
-  end
+  # def find_post
+  #   @post = Post.find(params[:id])
+  # end
 
 end
